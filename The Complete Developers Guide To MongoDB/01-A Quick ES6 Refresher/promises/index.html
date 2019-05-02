@@ -1,0 +1,49 @@
+<head></head>
+<body>
+    <button>Click!</button>
+    <script>
+
+        function startGame(){
+            let counter = 0;
+            document.querySelector('button').addEventListener('click',()=>{
+                ++counter;
+            });
+            // *** promised creation side
+            // พวก ฝั่ง lib มักจัดการให้
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    // เกมจบแล้วค่อยโยนผลไปให้ flow หลัก
+                    if(counter > 5){
+                        resolve();
+                    }else{
+                        reject();
+                    }
+                },2000)
+            });
+        }
+
+        // *** consuming side of the promise
+        // เรามักจะทำต่อจากฝั่งนี้
+        // where you will chain on the case to handle the success/error of the promise
+        startGame()
+            .then(()=> alert('You win!'))
+            .catch(()=> alert('You lost!'))
+
+        // let counter = 0;
+        // document.querySelector('button').addEventListener('click',()=>{
+        //     ++counter;
+        // });
+        // setTimeout(() => {
+        //     if(counter > 5){
+        //         alert('You won! Your clicks:' + counter);
+        //         // ต้องมาเขียน logic ดักแพ้ชนะกันตรงนี้เลย
+        //         // ดูไม่ดี
+        //         // จะดีกว่าไหมถ้าทำทั้งเกมนี้เป็น lib / function ให้เรียกใช้
+        //         // คนอื่นจะได้มาเรียกใช้ได้
+        //         // แล้วคืนผลแพ้/ชนะมา ให้ โปรแกรมหลักเอาไปใช้จัดการ ต่อว่าจะทำอะไรต่อ
+        //     }else{
+        //         alert('Sorry, you lost');                
+        //     }
+        // }, 2000);
+    </script>
+</body>

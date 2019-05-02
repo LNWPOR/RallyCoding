@@ -1,0 +1,4 @@
+/* Link ใช้ a ได้ เพราะไส้ในของ Link ก็คือ a */
+form a {
+    margin-left: 5px;
+}
