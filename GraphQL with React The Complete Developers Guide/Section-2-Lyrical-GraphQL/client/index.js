@@ -10,8 +10,14 @@ import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
 import SongDetail from './components/SongDetail';
 
-const client = new ApolloClient({});
+// const client = new ApolloClient({});
 // new ApolloCLient({}) ตรงนี้มันจะเชื่อว่าเราเชื่อม graphql ไว้ที่ 'hostname/graphql'
+
+const client = new ApolloClient({
+  // ช่วยบอก apollo ว่าให้ใช้ id ในการแยกแยะของใน collection
+  // มันจะได้จัดการอัพเดทต่างๆให้เราได้ถูกต้อง
+  dataIdFromObject: o => o.id
+});
 
 const Root = () => {
   return (
